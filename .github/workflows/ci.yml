@@ -39,8 +39,6 @@ jobs:
         run: |
           cd MLProject
           mlflow run . --env-manager=local -P data_path=diabetes_preprocessing/diabetes_preprocessing.csv
-        env:
-          MLFLOW_TRACKING_URI: ""
 
       - name: Get latest MLflow run_id
         run: |
@@ -52,7 +50,7 @@ jobs:
         run: |
           pip install scikit-learn==1.5.2 pandas==2.2.3 numpy==2.1.3
 
-      - name: Upload to GitHub (artefak model)
+      - name: Upload to GitHub
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -61,13 +59,13 @@ jobs:
           git push
 
       - name: Build Docker Model
+        env:
+          MLFLOW_TRACKING_URI: file:${{ github.workspace }}/MLProject/mlruns
         run: |
           mlflow models build-docker \
             --model-uri "runs:/$RUN_ID/model" \
             --name "smsml-diabetes" \
             --env-manager local
-        env:
-          MLFLOW_TRACKING_URI: "file:${{ github.workspace }}/MLProject/mlruns
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
