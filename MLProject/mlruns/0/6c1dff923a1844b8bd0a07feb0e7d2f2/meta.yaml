@@ -1,0 +1,15 @@
+artifact_uri: file:///home/runner/work/Workflow-CI/Workflow-CI/MLProject/mlruns/0/6c1dff923a1844b8bd0a07feb0e7d2f2/artifacts
+end_time: 1785265809620
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6c1dff923a1844b8bd0a07feb0e7d2f2
+run_name: burly-elk-507
+run_uuid: 6c1dff923a1844b8bd0a07feb0e7d2f2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1785265800021
+status: 3
+tags: []
+user_id: runner
