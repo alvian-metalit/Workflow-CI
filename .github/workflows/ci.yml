@@ -62,7 +62,7 @@ jobs:
 
       - name: Upgrade MLflow for Docker build
         run: |
-          pip install --upgrade mlflow
+          pip install "mlflow==2.22.4"
 
       - name: Build Docker Model
         run: |
