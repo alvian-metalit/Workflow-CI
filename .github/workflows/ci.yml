@@ -60,17 +60,14 @@ jobs:
           git diff --cached --quiet || git commit -m "ci: save mlflow artifacts run $RUN_ID [skip ci]"
           git push
 
-      - name: Upgrade MLflow for Docker build
-        run: |
-          pip install "mlflow==2.22.4"
-
       - name: Build Docker Model
         run: |
           mlflow models build-docker \
             --model-uri "runs:/$RUN_ID/model" \
-            --name "smsml-diabetes"
+            --name "smsml-diabetes" \
+            --env-manager local
         env:
-          MLFLOW_TRACKING_URI: "file:${{ github.workspace }}/MLProject/mlruns"
+          MLFLOW_TRACKING_URI: "file:${{ github.workspace }}/MLProject/mlruns
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
