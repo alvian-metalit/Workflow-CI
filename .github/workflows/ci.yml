@@ -60,6 +60,10 @@ jobs:
           git diff --cached --quiet || git commit -m "ci: save mlflow artifacts run $RUN_ID [skip ci]"
           git push
 
+      - name: Upgrade MLflow for Docker build
+        run: |
+          pip install --upgrade mlflow
+
       - name: Build Docker Model
         run: |
           mlflow models build-docker \
